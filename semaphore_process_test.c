@@ -65,6 +65,7 @@ int main(void)
         sem_wait(semaphore);
         write_file((int)getpid());
         sem_post(semaphore);
+        sem_close(semaphore);
         sleep(3);
         printf("child finish\n");
     }
@@ -74,7 +75,7 @@ int main(void)
         sem_wait(semaphore);
         write_file((int)getpid());
         sem_post(semaphore);
-
+        sem_close(semaphore);
         if (waitpid(n, NULL, 0) < 0)
             perror("waitpid(2) failed");
 
